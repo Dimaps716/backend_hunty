@@ -4,12 +4,12 @@ services:
   db:
     image: postgres:13
     restart: always
-    env_file: .env
+    env_file: .env.dev
 
   web:
     build:
       context: .
-    env_file: .env
+    env_file: .env.dev
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
