@@ -1,0 +1,1 @@
+web: gunicorn Hunty.wsgi --log-file -

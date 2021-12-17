@@ -22,6 +22,8 @@ from django.views.generic import TemplateView
 
 from Api.urls import urlpatterns as api_urls
 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -37,4 +39,5 @@ urlpatterns = [
     template_name='documentation.html',
     extra_context={'schema_url':'openapi-schema'}
     ), name='swagger-ui'),
-]
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
