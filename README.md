@@ -15,7 +15,6 @@ See Implementation to learn how to implement the project.
 ```
 docker-compose
 ubuntu o wsl
-
 ```
 
 ### Instalación 🔧
