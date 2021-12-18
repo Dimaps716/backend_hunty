@@ -10,3 +10,8 @@ COPY . /code
 RUN  python -m pip install -r requirements.txt
 
 COPY . /code/
+
+# copy and assign permissions docker-entrypoint
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod u+x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]

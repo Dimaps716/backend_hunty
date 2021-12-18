@@ -22,49 +22,28 @@ ubuntu o wsl
 
 In the terminal located in the folder where you want to save this project, execute the following.
 ```
-git clone https://github.com/Dimaps716/
+git clone https://github.com/Dimaps716/backend_hunty
 ```
 move to developer branch.
 ```
 git checkout developer
 ```
-run project dependencies
-```
-docker-compose build
-```
-run project
-```
-docker-compose up -d
-```
-run migrations
+run project dependencies.
 
+_the project is configured to run migrations and upload information to the database_
 ```
-docker-compose run --rm web python manage.py makemigrations
-
-docker-compose run --rm web python manage.py migrate
-
-```
-for now the database is empty
-```
-docker-compose ps
-```
-add information to the database
-```
-docker-compose run --rm web python manage.py loaddata fixtures/company.json
-```
-```
-docker-compose run --rm web python manage.py loaddata fixtures/vacancy.json
-```
-here you can see the images and their status
-```
-docker-compose up
+docker-compose up --build
 ```
 this will activate the servers
+
+_in this url you will see all vacancies_
 
 ```
 http://localhost:8000/
 ```
 check the documentation
+
+_in this other you will see the API documentation_
 ```
 http://localhost:8000/docs
 ```
