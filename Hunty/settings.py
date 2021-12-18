@@ -26,13 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY ='40^3x19t(=xtv5yzaj!yaz#*e165$*4fwrvjwh70wcyijyq1h9'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env('SECRET_KEY')
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = tuple((env.list('ALLOWED_HOSTS', default=[])))
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -92,25 +93,25 @@ WSGI_APPLICATION = 'Hunty.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-import dj_database_url
-from decouple import config
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+# import dj_database_url
+# from decouple import config
 
 # DATABASES = {
-#     'default':{
-#         'ENGINE':'django.db.backends.postgresql_psycopg2',
-#         'NAME': env.str("POSTGRES_DB"),
-#         'USER': env.str("POSTGRES_USER"),
-#         'PASSWORD': env.str("POSTGRES_PASSWORD"),
-#         'HOST': env.str("DB_HOST"),
-#         'PORT': env.int("DB_PORT")
-#     }
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
 # }
+
+DATABASES = {
+    'default':{
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': env.str("POSTGRES_DB"),
+        'USER': env.str("POSTGRES_USER"),
+        'PASSWORD': env.str("POSTGRES_PASSWORD"),
+        'HOST': env.str("DB_HOST"),
+        'PORT': env.int("DB_PORT")
+    }
+}
 
 
 # Password validation
